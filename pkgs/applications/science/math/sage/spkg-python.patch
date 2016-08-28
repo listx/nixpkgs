@@ -1,11 +1,11 @@
---- old/build/pkgs/python2/spkg-install	2015-07-26 15:34:43.000000000 +0200
-+++ new/build/pkgs/python2/spkg-install	2015-09-16 20:48:51.904555797 +0200
-@@ -32,7 +32,7 @@
- done
+--- sage-7.3/build/pkgs/python2/spkg-install	2016-08-28 17:15:28.292765003 -0700
++++ sage-7.3/build/pkgs/python2/spkg-install.new	2016-08-28 20:23:44.064494395 -0700
+@@ -72,6 +72,8 @@
  
- # We are setting LDFLAGS so that we pick up Sage's readline
--LDFLAGS="-L$SAGE_LOCAL/lib $LDFLAGS"
-+LDFLAGS="-L$SAGE_LOCAL/lib -lcrypt $LDFLAGS"
- export LDFLAGS
+ build()
+ {
++    LDFLAGS+=" -lcrypt -lreadline -lncurses "
++    export LDFLAGS
+     ./configure --prefix="$SAGE_LOCAL" --libdir="$SAGE_LOCAL/lib" \
+         --enable-unicode=ucs4 --enable-shared $PYTHON_CONFIGURE
  
- if [ "$SAGE_DEBUG" = "yes" ]; then

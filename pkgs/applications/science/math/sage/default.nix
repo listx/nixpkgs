@@ -4,11 +4,11 @@
 }:
 
 stdenv.mkDerivation rec {
-  name = "sage-6.8";
+  name = "sage-7.3";
 
   src = fetchurl {
-    url = "http://old.files.sagemath.org/src-old/${name}.tar.gz";
-    sha256 = "102mrzzi215g1xn5zgcv501x9sghwg758jagx2jixvg1rj2jijj9";
+    url = "mirror://sagemath/${name}.tar.gz";
+    sha256 = "0aash14cv4ayk4aqg954jm59fs76p8zjsx88whvr57mx4iym7rm6";
   };
 
   buildInputs = [ m4 perl gfortran texlive.combined.scheme-basic ffmpeg tk imagemagick liblapack
@@ -30,7 +30,7 @@ stdenv.mkDerivation rec {
 
   preBuild = "patchShebangs build";
 
-  installPhase = ''DESTDIR=$out make install'';
+  installPhase = ''DESTDIR=$out make'';
 
   meta = {
     homepage = "http://www.sagemath.org";
